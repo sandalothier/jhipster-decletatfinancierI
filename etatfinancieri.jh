@@ -1,0 +1,359 @@
+/**
+ * DetteGarantieSurette entity.
+ * @author sanda
+ * Relation
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity DetteGarantieSurette {
+    montantBrut Double
+    hypotheque Double
+    nantissement Double
+    gage Double
+}
+/**
+ * EngagementFinancier entity.
+ * @author sanda
+ * Relation
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity EngagementFinancier {
+    engagementDonne Double
+     engagementRecu Double
+}
+/**
+ * ElementFondsCommerce entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity ElementFondsCommerce {
+    modalite String
+     montant Double
+}
+/**
+ * ActifClause entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity ActifClause {
+    bienActif String
+     montant Double
+}
+/**
+ * CreanceClause entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity CreanceClause {
+    creance String
+     montant Double
+}
+/**
+ * DifferenceEvaluation entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity DifferenceEvaluation {
+    bienActif String
+    montantEvaluation Double
+    prixMarche Double
+}
+/**
+ * StatDetailProduit entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity StatDetailProduit {
+    montantEtat Double
+     montantEtatUemoa Double
+     montantEtatHorsUemoa Double
+}
+/**
+ * StatDetailProduit2 entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity StatDetailProduit2 {
+    montant Double
+}
+/**
+ * StatDetailProduitHao entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity StatDetailProduitHao {
+    montant Double
+}
+/**
+ * StatTransfertCharge entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity StatTransfertCharge {
+    montant Double
+}
+/**
+ * StatDetailCharge entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity StatDetailCharge {
+    montant Double
+}
+/**
+ * StatChargeHao entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *     OneToOne avec IntituleEtatFinancier
+ */
+entity StatChargeHao {
+    montant Double
+}
+/**
+ * BienAcquisOccasion entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity BienAcquisOccasion {
+    bien String
+    montantEtat Double
+    montantHorsUemoa Double
+}
+/**
+ * OeuvreArt entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity OeuvreArt {
+    bien String
+    montantAcquisition Double
+    montantCession Double
+}
+enum DureeEcheance {
+    MOINS_DE_DEUX_ANS, PLUS_DE_DEUX_ANS
+}
+enum Type {
+    CREANCE, DETTE
+}
+/**
+ * EcheanceCreancePlusDeuxAns entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity EcheanceType {
+    type Type
+    duree DureeEcheance
+    intitule String
+    echeanceCreance Date
+}
+/**
+ * MontantTva  entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity MontantTva {
+    intitule String
+    montantFacture Double
+    montantRecuperation Double
+    montantSupport Double
+}
+/**
+ * CompositionCapitalSocial entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity CompositionCapitalSocial {
+    nom String
+    prenoms String
+    nationalite String
+    action Boolean
+    adp Boolean
+    nombre Integer
+    montantTotal Double
+    cessionEnCoursExo Double
+}
+/**
+ * FilialeEtParticipation entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity FilialeEtParticipation {
+    localite String
+    pourcentageDetenu Double
+    montantCapitauxPropre Double
+    resultatDernierExo Double
+}
+/**
+ * FilialeEtParticipation entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity AvanceAssocieDirigeant {
+    nom String
+    prenoms String
+    echeance Date
+    taux Double
+    terme Date
+    montantAccorde Double
+    montantRembourse Double
+}
+/**
+ * ElementReevalue entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity ElementReevalue {
+    elementReevalue String
+    coutHistorique Double
+    amortissementSupplementaire Double
+}
+relationship OneToMany {
+    EtatFinancier to DetteGarantieSurette
+}
+relationship OneToMany {
+    EtatFinancier to EngagementFinancier
+}
+relationship OneToMany {
+    EtatFinancier to ElementFondsCommerce
+}
+relationship OneToMany {
+    EtatFinancier to ActifClause
+}
+relationship OneToMany {
+    EtatFinancier to CreanceClause
+}
+relationship OneToMany {
+    EtatFinancier to DifferenceEvaluation
+}
+relationship OneToMany {
+    EtatFinancier to StatDetailProduit
+}
+relationship OneToMany {
+    EtatFinancier to StatDetailProduit2
+}
+relationship OneToMany {
+    EtatFinancier to StatDetailProduitHao
+}
+relationship OneToMany {
+    EtatFinancier to StatTransfertCharge
+}
+relationship OneToMany {
+    EtatFinancier to StatDetailCharge
+}
+relationship OneToMany {
+    EtatFinancier to StatChargeHao
+}
+relationship OneToMany {
+    EtatFinancier to OeuvreArt
+}
+relationship OneToMany {
+    EtatFinancier to EcheanceType
+}
+relationship OneToMany {
+    EtatFinancier to MontantTva
+}
+relationship OneToMany {
+    EtatFinancier to CompositionCapitalSocial
+}
+relationship OneToMany {
+    EtatFinancier to FilialeEtParticipation
+}
+relationship OneToMany {
+    EtatFinancier to AvanceAssocieDirigeant
+}
+relationship OneToMany {
+    EtatFinancier to EcartConversion
+}
+relationship OneToMany {
+    EtatFinancier to ProvisionReglemente
+}
+relationship OneToMany {
+    EtatFinancier to EvaluationBasePrixMarche
+}
+relationship OneToMany {
+    EtatFinancier to EchuExo
+}
+relationship OneToMany {
+    EtatFinancier to ElementConstitutifPerteGainEchange
+}
+relationship OneToMany {
+    EtatFinancier to AnalyseImpotDiffere
+}
+relationship OneToMany {
+    EtatFinancier to CompteCourantAssocie
+}
+relationship OneToMany {
+    EtatFinancier to Participation
+}
+relationship OneToMany {
+    EtatFinancier to DetailReserve
+}
+relationship OneToMany {
+    EtatFinancier to RemunerationOrganeDirection
+}
+relationship OneToMany {
+    EtatFinancier to ElementReevalue
+}
+relationship OneToOne {
+    DetteGarantieSurette to IntituleEtatFinancier
+}
+relationship OneToOne {
+    ElementFondsCommerce to IntituleEtatFinancier
+}
+relationship OneToOne {
+    EngagementFinancier to IntituleEtatFinancier
+}
+relationship OneToOne {
+    StatDetailProduit to IntituleEtatFinancier
+}
+relationship OneToOne {
+    StatDetailProduit2 to IntituleEtatFinancier
+}
+relationship OneToOne {
+    StatDetailProduitHao to IntituleEtatFinancier
+}
+relationship OneToOne {
+    StatTransfertCharge to IntituleEtatFinancier
+}
+relationship OneToOne {
+    StatDetailCharge to IntituleEtatFinancier
+}
+relationship OneToOne {
+    StatChargeHao to IntituleEtatFinancier
+}
+relationship OneToOne {
+    DetailReserve to IntituleEtatFinancier
+}
+// Set pagination options
+paginate DetteGarantieSurette, EngagementFinancier, ElementFondsCommerce, ActifClause, CreanceClause, DifferenceEvaluation, StatDetailProduit, StatDetailProduit2, StatDetailProduitHao, StatTransfertCharge, StatDetailCharge, StatChargeHao, BienAcquisOccasion, OeuvreArt, EcheanceType, MontantTva, CompositionCapitalSocial, FilialeEtParticipation, AvanceAssocieDirigeant, SubventProv, ProvisionReglemente, EcartConversion, EvaluationBasePrixMarche, EchuExo, ElementConstitutifPerteGainEchange, AnalyseImpotDiffere,CompteCourantAssocie, Participation, DetailReserve, RemunerationOrganeDirection, Actionnaire, ConseilAdministration, Dirigeant, Filiale, VariationAvoirSmt, EtatFinancier, IntituleEtat, IntituleBilan,  PlanComptable, ReevaluationEffectuee, IntituleEtatFinancier, Region, SiteWeb, FoyerFiscal, CompteFiscal, Blog, Email, Fax,Fixe with infinite-scroll
+paginate ElementReevalue, Reintegration, Deduction, ResultatFiscal, LiquidationImpot, PrelevementSource, TerrainRenseignement, BatimentRenseignement, Loyer, DetailChargeEnCFADetailProduitEnCFA, DeficitReportable, AmortissementReputeDiffere, TableauImf, TableauDesAmortissement, ExploitantIndividuel,Bilan, Resultat,  Tafire, TafireCafg,TafireCreance, TafireDette, TafireStock,Tableau1, Tableau2, Tableau3, Tableau4, Tableau5, Tableau6, Tableau7, Tableau8, Tableau9, Tableau10, Tableau11, Tableau12, Tableau13 with pagination
+// Use Data Transfert Objects (DTO)
+dto DetteGarantieSurette, EngagementFinancier, ElementFondsCommerce, ActifClause, CreanceClause, DifferenceEvaluation, StatDetailProduit, StatDetailProduit2, StatDetailProduitHao, StatTransfertCharge, StatDetailCharge, StatChargeHao, BienAcquisOccasion, OeuvreArt, EcheanceType, MontantTva, CompositionCapitalSocial, FilialeEtParticipation, AvanceAssocieDirigeant, SubventProv, ProvisionReglemente, EcartConversion, EvaluationBasePrixMarche, EchuExo, ElementConstitutifPerteGainEchange, AnalyseImpotDiffere,CompteCourantAssocie, Participation, DetailReserve, RemunerationOrganeDirection, Actionnaire, ConseilAdministration, Dirigeant, Filiale, VariationAvoirSmt, EtatFinancier, IntituleEtat, IntituleBilan,  PlanComptable, ReevaluationEffectuee, IntituleEtatFinancier, Region, SiteWeb, FoyerFiscal, CompteFiscal, Blog, Email, Fax,Fixe, ElementReevalue, Reintegration, Deduction, ResultatFiscal, LiquidationImpot, PrelevementSource, TerrainRenseignement, BatimentRenseignement, Loyer, DetailChargeEnCFADetailProduitEnCFA, DeficitReportable, AmortissementReputeDiffere, TableauImf, TableauDesAmortissement, ExploitantIndividuel,Bilan, Resultat,  Tafire, TafireCafg,TafireCreance, TafireDette, TafireStock,Tableau1, Tableau2, Tableau3, Tableau4, Tableau5, Tableau6, Tableau7, Tableau8, Tableau9, Tableau10, Tableau11, Tableau12, Tableau13 with mapstruct
+// Set service options to all except few
+service all with serviceImpl except EtatFinancier, IntituleEtat, IntituleBilan,  PlanComptable
+// Set an angular suffix
+// angularSuffix * with mySuffix
